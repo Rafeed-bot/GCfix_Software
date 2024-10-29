@@ -43,7 +43,7 @@ for file_ in os.listdir(input_folder):
         subprocess.run(command, shell=True)
 
         input = output_npy
-        output_csv = f'{output_folder}/{file_[:-4]}.csv'
+        output_csv = f'{output_folder}/{file_[:-4]}__correction_factors.csv'
         command = f'python single_sample_correction_factor.py {input} {output_csv} {start_len} {end_len} {ref_genome_GC_npy}'
         subprocess.run(command, shell=True)
         os.remove(input)
@@ -62,7 +62,7 @@ for file_ in os.listdir(input_folder):
             if os.path.isdir(cov_folder)==False:
                 os.mkdir(cov_folder)
             input_bam = f'{input_folder}/{file_}'
-            output_cov = f'{cov_folder}/{file_[:-4]}.csv'
+            output_cov = f'{cov_folder}/{file_[:-4]}__corrected_coverage.csv'
             correction_path = output_csv
             command = f'python single_sample_corrected_cov.py {input_bam} {output_cov} {correction_path} {mapq} {start_len} {end_len} {CPU} {ref_genome_path} {cov_region_file}'
             subprocess.run(command, shell=True)
