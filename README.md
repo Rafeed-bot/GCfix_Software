@@ -1,5 +1,8 @@
 # GCfix
-GCfix is a fast and accurate software for cell free GC correction. It provides accurate fragment length specific correction factors for both deep and low pass whole genome sequencing samples. The software works for all reference genomes. It can provide GC correction factor tagged bam files and and corrected coverage profiles as output for easy usage.   
+GCfix is a fast and accurate software for cell free GC correction. It provides accurate fragment length specific correction factors for both deep and low pass whole genome sequencing samples. The software works for all reference genomes. It can provide GC correction factor tagged bam files and and corrected coverage profiles as output for easy usage.
+<div align="center">
+  <img src="GCfix_Graphical_Abstract.png" alt="GCfix Graphical Abstract" width="100%">
+</div> 
 
 
 ## Required Installations
