@@ -26,7 +26,10 @@ def interpolate_zero_elements(array):
 def process_length_level(len_sample):
     processed_sample = np.zeros( len_sample.shape )
     for i in range(len_sample.shape[0]):
-        processed_sample[i, :] = interpolate_zero_elements(len_sample[i, :])
+        if np.sum(len_sample[i, :])==0:
+            processed_sample[i, :] = len_sample[i, :]
+        else:
+            processed_sample[i, :] = interpolate_zero_elements(len_sample[i, :])
     return processed_sample
 
 def remove_outlier(arr):
@@ -81,7 +84,10 @@ X = [float(i/100) for i in range(lower_cnt, upper_cnt+1)]
 for length in range(start_len, end_len+1):
     start_len_ind = len_group_dic[length][0] - start_len
     end_len_ind = len_group_dic[length][1] - start_len
-    final_GC_array[length-start_len, :] = construct_GC_bias(sample_len_GC_array[start_len_ind: end_len_ind+1, :], 
+    if np.sum(sample_len_GC_array[length-start_len, :])==0:
+        final_GC_array[length-start_len, :] = np.ones(final_GC_array.shape[1])
+    else:
+        final_GC_array[length-start_len, :] = construct_GC_bias(sample_len_GC_array[start_len_ind: end_len_ind+1, :], 
                             ref_len_GC_array[start_len_ind: end_len_ind+1, :], X)
 post_process_outlier(final_GC_array)
 
